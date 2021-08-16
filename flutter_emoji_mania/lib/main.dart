@@ -25,7 +25,7 @@ class RootPage extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       crossAxisSpacing: 12,
       mainAxisSpacing: 12,
-      crossAxisCount: 2,
+      crossAxisCount: 3,
       children: <Widget>[
         EmojiCell(
           emoji: "😀",
@@ -112,8 +112,12 @@ class RootPage extends StatelessWidget {
           title: "Sushi",
         ),
         EmojiCell(
-          emoji: "🦀💥🦀",
-          title: "Kani no Kenka",
+          emoji: "🦀",
+          title: "Kani",
+        ),
+        EmojiCell(
+          emoji: "✌️",
+          title: "Scissor",
         ),
         EmojiCell(
           emoji: "👨‍👩‍👧‍👧",
@@ -126,6 +130,14 @@ class RootPage extends StatelessWidget {
         EmojiCell(
           emoji: "🍌",
           title: "Banana",
+        ),
+        EmojiCell(
+          emoji: "🎃",
+          title: "Halloween",
+        ),
+        EmojiCell(
+          emoji: "🌈",
+          title: "Rainbow",
         ),
         EmojiCell(
           emoji: "⚔️",
@@ -177,29 +189,28 @@ class EmojiCell extends StatelessWidget {
           BoxShadow(
             color: Colors.lightBlue.withAlpha(110),
             blurRadius: 4,
+            spreadRadius: 1,
           ),
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Center(
-            child: Text(
-              emoji,
-              style: TextStyle(fontSize: 36, shadows: [
-                Shadow(
-                  color: Colors.green.withAlpha(170),
-                  blurRadius: 6,
-                ),
-              ]),
-            ),
+          Text(
+            emoji,
+            style: TextStyle(fontSize: 36, shadows: [
+              Shadow(
+                color: Colors.green.withAlpha(170),
+                blurRadius: 6,
+              ),
+            ]),
           ),
           Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
-          Text(List.filled(10, title.toLowerCase()).join(" "), maxLines: 3, overflow: TextOverflow.fade),
         ],
       ),
     );
