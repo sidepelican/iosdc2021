@@ -104,6 +104,18 @@ struct _Presentation: View {
 
     var body: some View {
         ZStack {
+            Button(action: {
+                self.controller.handleSwipe(.back)
+            }, label: EmptyView.init)
+            .hidden()
+            .keyboardShortcut(.leftArrow, modifiers: [])
+
+            Button(action: {
+                self.controller.handleSwipe(.forward)
+            }, label: EmptyView.init)
+            .hidden()
+            .keyboardShortcut(.rightArrow, modifiers: [])
+
             scenes[controller.currentSceneIndex]
             if showPointer {
                 Image(systemName: "circle.fill")
@@ -113,25 +125,25 @@ struct _Presentation: View {
                     .position(pointerPosition!)
             }
         }
-            .gesture(
-                DragGesture(minimumDistance: 50)
-                    .onChanged { e in
-                        self.pointerPosition = e.location
-                        if self.dragStart == nil {
-                            self.dragStart = Date()
-                        }
+        .gesture(
+            DragGesture(minimumDistance: 50)
+                .onChanged { e in
+                    self.pointerPosition = e.location
+                    if self.dragStart == nil {
+                        self.dragStart = Date()
                     }
-                    .onEnded { e in
-                        let showPointer = self.showPointer
-                        self.pointerPosition = nil
-                        self.dragStart = nil
-                        if showPointer { return }
+                }
+                .onEnded { e in
+                    let showPointer = self.showPointer
+                    self.pointerPosition = nil
+                    self.dragStart = nil
+                    if showPointer { return }
 
-                        if e.startLocation.x < e.location.x {
-                            self.controller.handleSwipe(.back)
-                        } else {
-                            self.controller.handleSwipe(.forward)
-                        }
+                    if e.startLocation.x < e.location.x {
+                        self.controller.handleSwipe(.back)
+                    } else {
+                        self.controller.handleSwipe(.forward)
+                    }
                 }
         )
     }
