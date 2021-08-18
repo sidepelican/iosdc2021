@@ -49,11 +49,17 @@ public final class PresentationContext: ObservableObject {
         if currentStep == prevStep {
             switch stepping {
             case .forward:
-                currentPageIndex = min(pages.count - 1, currentPageIndex + 1)
-                currentStep = 0
+                let newPageIndex = min(pages.count - 1, currentPageIndex + 1)
+                if newPageIndex != currentPageIndex {
+                    currentPageIndex = newPageIndex
+                    currentStep = 0
+                }
             case .back:
-                currentPageIndex = max(0, currentPageIndex - 1)
-                currentStep = pages[currentPageIndex].stepCount - 1
+                let newPageIndex = max(0, currentPageIndex - 1)
+                if newPageIndex != currentPageIndex {
+                    currentPageIndex = newPageIndex
+                    currentStep = pages[currentPageIndex].stepCount - 1
+                }
             }
         }
     }
