@@ -9,7 +9,7 @@ extension Presentation {
             .urls(for: .documentDirectory, in: .userDomainMask)
             .first?.appendingPathComponent(filename) else { return }
 
-        let presentationContext = PresentationContext(pages: pages)
+        let presentationContext = PresentationContext(pages: context.pages)
         presentationContext.currentPageIndex = 0
         let vc = UIHostingController(rootView: VirtualScreen(resolution: resolution) {
             _Presentation()
@@ -19,20 +19,18 @@ extension Presentation {
 
         let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: vc.view.bounds.size))
         try! pdfRenderer.writePDF(to: exportURL) { context in
-            while !presentationContext.isEnd {
-//                RunLoop.main.run(until: Date().advanced(by:  0.1))
+            while true {
                 context.beginPage()
-                print("printing page \(presentationContext.currentPageIndex+1) ...")
+                print("printing page \(presentationContext.currentPageIndex+1) step \(presentationContext.currentStep)...")
                 vc.view.drawHierarchy(in: context.pdfContextBounds, afterScreenUpdates: true)
 
                 presentationContext.nextAnimation = nil
                 presentationContext.handleStep(.forward)
-            }
 
-//            RunLoop.main.run(until: Date().advanced(by:  0.1))
-            context.beginPage()
-            print("printing last page \(presentationContext.currentPageIndex+1) ...")
-            vc.view.drawHierarchy(in: context.pdfContextBounds, afterScreenUpdates: true)
+                if presentationContext.isEnd {
+                    break
+                }
+            }
         }
 
         let controller = UIDocumentPickerViewController(forExporting: [exportURL])

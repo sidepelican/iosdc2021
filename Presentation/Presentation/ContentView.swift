@@ -1,20 +1,25 @@
 import SwiftUI
 import PresentationKit
 
-struct ContentView: View {
-    var body: some View {
-        VirtualScreen(resolution: CGSize(width: 1280, height: 720)) {
-            Presentation(pages: [
-                HelloPage(),
-                HelloWorldPage(),
-            ])
-        }
-    }
-}
+//struct ContentView: View {
+//    var body: some View {
+//        VirtualScreen(resolution: CGSize(width: 1280, height: 720)) {
+//            Presentation(pages: [
+//                HelloPage(),
+//                HelloWorldPage(),
+//            ])
+//            .resumeFromLastPage()
+//        }
+//    }
+//}
 
 struct HelloPage: View, Page {
     var body: some View {
         Text("Hello")
+    }
+
+    var cunningText: String {
+        "Hello"
     }
 }
 
@@ -32,10 +37,18 @@ struct HelloWorldPage: View, Page {
             .padding()
         }
     }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    var cunningText: String {
+        """
+        Hello World
+        -----------
+        こんにちは世界
+        """
     }
 }
+
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

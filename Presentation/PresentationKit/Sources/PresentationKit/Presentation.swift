@@ -1,14 +1,33 @@
 import SwiftUI
 
 public struct Presentation: View {
-    public var pages: [AnyPage]
+    var context: PresentationContext
+    var useResumeFromLastPage: Bool = false
+
     public init(pages: [AnyPage]) {
-        self.pages = pages
+        self.context = PresentationContext(pages: pages)
+    }
+
+    public init(context: PresentationContext) {
+        self.context = context
     }
 
     public var body: some View {
-        _Presentation()
-            .environmentObject(PresentationContext(pages: pages))
+        if useResumeFromLastPage {
+            ResumeFromLastPage {
+                _Presentation()
+            }
+            .environmentObject(context)
+        } else {
+            _Presentation()
+                .environmentObject(context)
+        }
+    }
+
+    public func resumeFromLastPage() -> Presentation {
+        var ret = self
+        ret.useResumeFromLastPage = true
+        return ret
     }
 }
 
@@ -19,11 +38,7 @@ public final class PresentationContext: ObservableObject {
     }
 
     let pages: [AnyPage]
-    @Published public var currentPageIndex = 0 {
-        didSet {
-            UserDefaults.standard.set(currentPageIndex, forKey: "currentPageIndex")
-        }
-    }
+    @Published public var currentPageIndex = 0
     @Published public var currentStep = 0
     public var nextAnimation: Animation? = .default
     var isEnd: Bool {
@@ -31,9 +46,8 @@ public final class PresentationContext: ObservableObject {
             && pages[currentPageIndex].stepCount - 1 == currentStep
     }
 
-    init(pages: [AnyPage]) {
+    public init(pages: [AnyPage]) {
         self.pages = pages
-        currentPageIndex = min(pages.count - 1, UserDefaults.standard.integer(forKey: "currentPageIndex"))
     }
 
     func handleStep(_ stepping: Stepping) {
@@ -80,18 +94,6 @@ struct _Presentation: View {
 
     var body: some View {
         ZStack {
-            Button(action: {
-                self.context.handleStep(.back)
-            }, label: EmptyView.init)
-            .hidden()
-            .keyboardShortcut(.leftArrow, modifiers: [])
-
-            Button(action: {
-                self.context.handleStep(.forward)
-            }, label: EmptyView.init)
-            .hidden()
-            .keyboardShortcut(.rightArrow, modifiers: [])
-
             context.pages[context.currentPageIndex].anyBody
             if showPointer {
                 Image(systemName: "circle.fill")
@@ -101,6 +103,7 @@ struct _Presentation: View {
                     .position(pointerPosition!)
             }
         }
+        .overlay(KeyboardHandleView())
         .gesture(
             DragGesture(minimumDistance: 50)
                 .onChanged { e in
