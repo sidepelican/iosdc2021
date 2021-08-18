@@ -1,96 +1,66 @@
 import SwiftUI
 
 public struct Presentation: View {
-    public var scenes: [AnyView]
-    public init(scenes: [AnyView]) {
-        self.scenes = scenes
+    public var pages: [AnyPage]
+    public init(pages: [AnyPage]) {
+        self.pages = pages
     }
 
     public var body: some View {
-        _Presentation(scenes: scenes)
-            .environmentObject(PresentationController(sceneCount: scenes.count))
+        _Presentation()
+            .environmentObject(PresentationContext(pages: pages))
     }
 }
 
-class PresentationController: ObservableObject {
+public final class PresentationContext: ObservableObject {
     enum Stepping {
         case forward
         case back
     }
-    enum Action {
-        case forward
-        case stay
-        case back
-    }
-    var currentTransitionHandler: ((Stepping) -> (Action))?
 
-    func handleSwipe(_ stepping: Stepping) {
-        if let customHandler = currentTransitionHandler {
-            let action = customHandler(stepping)
-            switch action {
-            case .back:
-                currentTransitionHandler = nil
-                currentSceneIndex = max(0, currentSceneIndex - 1)
-            case .forward:
-                currentTransitionHandler = nil
-                currentSceneIndex = min(sceneCount - 1, currentSceneIndex + 1)
-            case .stay:
-                break
-            }
-        } else {
-            switch stepping {
-            case .back:
-                currentSceneIndex = max(0, currentSceneIndex - 1)
-            case .forward:
-                currentSceneIndex = min(sceneCount - 1, currentSceneIndex + 1)
-            }
-        }
-    }
-
-    let sceneCount: Int
-    @Published var currentSceneIndex = 0 {
+    let pages: [AnyPage]
+    @Published public var currentPageIndex = 0 {
         didSet {
-            UserDefaults.standard.set(currentSceneIndex, forKey: "currentSceneIndex")
+            UserDefaults.standard.set(currentPageIndex, forKey: "currentPageIndex")
         }
     }
-
-    init(sceneCount: Int) {
-        self.sceneCount = sceneCount
-        currentSceneIndex = min(sceneCount - 1, UserDefaults.standard.integer(forKey: "currentSceneIndex"))
+    @Published public var currentStep = 0
+    public var nextAnimation: Animation? = .default
+    var isEnd: Bool {
+        currentPageIndex == pages.count - 1
+            && pages[currentPageIndex].stepCount - 1 == currentStep
     }
 
-    static func defaultStepper(
-        _ step: Binding<Int>,
-        maxStep: Int,
-        animation: ((_ currentStep: Int) -> Animation?)? = { _ in .default }
-    ) -> (Stepping) -> Action {
-        { stepping in
-            let prevStep = step.wrappedValue
-            withAnimation(animation?(prevStep)) {
-                switch stepping {
-                case .forward:
-                    step.wrappedValue = min(maxStep, step.wrappedValue + 1)
-                case .back:
-                    step.wrappedValue = max(0, step.wrappedValue - 1)
-                }
+    init(pages: [AnyPage]) {
+        self.pages = pages
+        currentPageIndex = min(pages.count - 1, UserDefaults.standard.integer(forKey: "currentPageIndex"))
+    }
+
+    func handleStep(_ stepping: Stepping) {
+        let prevStep = currentStep
+        withAnimation(nextAnimation) {
+            switch stepping {
+            case .forward:
+                currentStep = min(pages[currentPageIndex].stepCount - 1, currentStep + 1)
+            case .back:
+                currentStep = max(0, currentStep - 1)
             }
-            if step.wrappedValue == prevStep {
-                switch stepping {
-                case .forward:
-                    return .forward
-                case .back:
-                    return .back
-                }
-            } else {
-                return .stay
+        }
+        if currentStep == prevStep {
+            switch stepping {
+            case .forward:
+                currentPageIndex = min(pages.count - 1, currentPageIndex + 1)
+                currentStep = 0
+            case .back:
+                currentPageIndex = max(0, currentPageIndex - 1)
+                currentStep = pages[currentPageIndex].stepCount - 1
             }
         }
     }
 }
 
 struct _Presentation: View {
-    @EnvironmentObject var controller: PresentationController
-    var scenes: [AnyView]
+    @EnvironmentObject var context: PresentationContext
 
     @State var dragStart: Date?
     @State var pointerPosition: CGPoint?
@@ -105,18 +75,18 @@ struct _Presentation: View {
     var body: some View {
         ZStack {
             Button(action: {
-                self.controller.handleSwipe(.back)
+                self.context.handleStep(.back)
             }, label: EmptyView.init)
             .hidden()
             .keyboardShortcut(.leftArrow, modifiers: [])
 
             Button(action: {
-                self.controller.handleSwipe(.forward)
+                self.context.handleStep(.forward)
             }, label: EmptyView.init)
             .hidden()
             .keyboardShortcut(.rightArrow, modifiers: [])
 
-            scenes[controller.currentSceneIndex]
+            context.pages[context.currentPageIndex].anyBody
             if showPointer {
                 Image(systemName: "circle.fill")
                     .frame(width: 60, height: 60)
@@ -140,9 +110,9 @@ struct _Presentation: View {
                     if showPointer { return }
 
                     if e.startLocation.x < e.location.x {
-                        self.controller.handleSwipe(.back)
+                        self.context.handleStep(.back)
                     } else {
-                        self.controller.handleSwipe(.forward)
+                        self.context.handleStep(.forward)
                     }
                 }
         )

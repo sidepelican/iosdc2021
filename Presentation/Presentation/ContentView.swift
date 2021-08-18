@@ -4,21 +4,32 @@ import PresentationKit
 struct ContentView: View {
     var body: some View {
         VirtualScreen(resolution: CGSize(width: 1280, height: 720)) {
-            Presentation(scenes: [
-                AnyView(
-                    ZStack {
-                        Color.white
-                        DeviceFrame {
-                            Text("Hello")
-                                .foregroundColor(.black)
-                        }
-                        .padding()
-                    }
-                ),
-                AnyView(
-                    Text("Page 2")
-                ),
+            Presentation(pages: [
+                HelloPage(),
+                HelloWorldPage(),
             ])
+        }
+    }
+}
+
+struct HelloPage: View, Page {
+    var body: some View {
+        Text("Hello")
+    }
+}
+
+struct HelloWorldPage: View, Page {
+    @EnvironmentObject var context: PresentationContext
+    var stepCount: Int { 2 }
+
+    var body: some View {
+        ZStack {
+            context.currentStep == 1 ? Color.gray : Color.primary
+            DeviceFrame {
+                Text(context.currentStep == 0 ? "Hello": "World")
+                    .foregroundColor(.black)
+            }
+            .padding()
         }
     }
 }
