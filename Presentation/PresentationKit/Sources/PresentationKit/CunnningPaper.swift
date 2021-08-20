@@ -25,11 +25,10 @@ public struct CunnningPaper: View {
 
                 Text("\(context.currentPageIndex + 1) / \(context.pages.count)")
                     .font(.title3)
-                    .padding(16)
+                    .animation(nil)
             }
                 .padding(16)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                .animation(nil)
         }
             .overlay(KeyboardHandleView())
             .environmentObject(context)
