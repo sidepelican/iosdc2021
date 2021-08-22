@@ -8,6 +8,7 @@ public final class EmojiListBViewController: BaseViewController<EmojiListBViewCo
         override init(frame: CGRect) {
             super.init(frame: frame)
 
+            // 影を単独のViewに分けてオフスクリーンレンダリングを減らす
             let shadow = UIView()
             shadow.layer.shadowColor = UIColor(red: 0x68 / 0xFF, green: 0x9F / 0xFF, blue: 0x38 / 0xFF, alpha: 1).cgColor
             shadow.layer.shadowRadius = 3.4
@@ -17,7 +18,7 @@ public final class EmojiListBViewController: BaseViewController<EmojiListBViewCo
             shadow.backgroundColor = .white
             shadow.layer.cornerRadius = 8
             shadow.layer.rasterizationScale = UIScreen.main.scale
-            shadow.layer.shouldRasterize = true
+            shadow.layer.shouldRasterize = true // 描画結果をテクスチャに焼き込んでキャッシュする
             shadow.clipsToBounds = false
             contentView.addSubview(shadow)
             shadow.translatesAutoresizingMaskIntoConstraints = false

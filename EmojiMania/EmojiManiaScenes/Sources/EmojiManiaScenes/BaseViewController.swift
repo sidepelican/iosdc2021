@@ -45,16 +45,10 @@ public class BaseViewController<Cell: EmojiListCell>: UICollectionViewController
             cell.configure(emoji: item)
             return cell
         }
-    }
 
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if dataSource.snapshot().numberOfItems == 0 {
-            var snapshot = DataSource.Snapshot()
-            snapshot.appendSections([1])
-            snapshot.appendItems(Emoji.emojis, toSection: 1)
-            dataSource.apply(snapshot, animatingDifferences: false)
-        }
+        var snapshot = DataSource.Snapshot()
+        snapshot.appendSections([0])
+        snapshot.appendItems(Emoji.emojis, toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

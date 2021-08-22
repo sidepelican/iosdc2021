@@ -34,12 +34,12 @@ public final class EmojiListCViewController: BaseViewController<EmojiListCViewCo
             ])
 
             label.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 36))
-            label.backgroundColor = background.backgroundColor
-            label.clipsToBounds = true
+            label.backgroundColor = background.backgroundColor // アルファブレンドを減らす
+            label.clipsToBounds = true // アルファブレンドを減らす
             title.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 14, weight: .bold))
             title.textColor = .black
-            title.backgroundColor = background.backgroundColor
-            title.clipsToBounds = true
+            title.backgroundColor = background.backgroundColor // アルファブレンドを減らす
+            title.clipsToBounds = true // アルファブレンドを減らす
         }
 
         required init?(coder: NSCoder) {
@@ -49,10 +49,12 @@ public final class EmojiListCViewController: BaseViewController<EmojiListCViewCo
         public override func layoutSubviews() {
             super.layoutSubviews()
 
+            // オフスクリーンレンダリングを減らす
             contentView.layer.shadowPath = CGPath(roundedRect: contentView.bounds, cornerWidth: 8, cornerHeight: 8, transform: nil)
         }
 
         public func configure(emoji: Emoji) {
+            // オフスクリーンレンダリングを減らす
             let shadow = NSShadow()
             shadow.shadowColor = UIColor(red: 0x4C / 0xFF, green: 0xAD / 0xFF, blue: 0x50 / 0xFF, alpha: 170 / 255)
             shadow.shadowOffset = .init(width: 0, height: 0)
