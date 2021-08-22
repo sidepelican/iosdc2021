@@ -4,7 +4,7 @@ public protocol EmojiListCell: UICollectionViewCell {
     func configure(emoji: Emoji)
 }
 
-public class EmojiListBaseViewController<Cell: EmojiListCell>: UICollectionViewController {
+public class BaseViewController<Cell: EmojiListCell>: UICollectionViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Int, Emoji>
     private var dataSource: DataSource!
 
@@ -47,8 +47,8 @@ public class EmojiListBaseViewController<Cell: EmojiListCell>: UICollectionViewC
         }
     }
 
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         if dataSource.snapshot().numberOfItems == 0 {
             var snapshot = DataSource.Snapshot()

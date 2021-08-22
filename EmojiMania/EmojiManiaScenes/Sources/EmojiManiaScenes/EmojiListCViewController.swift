@@ -1,6 +1,6 @@
 import UIKit
 
-public final class EmojiListAViewController: BaseViewController<EmojiListAViewController.Cell> {
+public final class EmojiListCViewController: BaseViewController<EmojiListCViewController.Cell> {
     public final class Cell: UICollectionViewCell, EmojiListCell {
         private let label = UILabel()
         private let title = UILabel()
@@ -8,7 +8,7 @@ public final class EmojiListAViewController: BaseViewController<EmojiListAViewCo
         override init(frame: CGRect) {
             super.init(frame: frame)
 
-            contentView.layer.shadowColor = UIColor(red: 0x03 / 0xFF, green: 0xA9 / 0xFF, blue: 0xF4 / 0xFF, alpha: 1).cgColor
+            contentView.layer.shadowColor = UIColor(red: 0xD8 / 0xFF, green: 0x1B / 0xFF, blue: 0x60 / 0xFF, alpha: 1).cgColor
             contentView.layer.shadowRadius = 3.4
             contentView.layer.shadowOpacity = 150 / 255
             contentView.layer.shadowOffset = .init(width: 0, height: 0)
@@ -34,12 +34,6 @@ public final class EmojiListAViewController: BaseViewController<EmojiListAViewCo
             ])
 
             label.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 36))
-
-            label.layer.shadowColor = UIColor(red: 0x4C / 0xFF, green: 0xAD / 0xFF, blue: 0x50 / 0xFF, alpha: 1).cgColor
-            label.layer.shadowRadius = 2.3
-            label.layer.shadowOpacity = 170 / 255
-            label.layer.shadowOffset = .init(width: 0, height: 0)
-
             title.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 14, weight: .bold))
             title.textColor = .black
         }
@@ -48,8 +42,21 @@ public final class EmojiListAViewController: BaseViewController<EmojiListAViewCo
             fatalError("init(coder:) has not been implemented")
         }
 
+        public override func layoutSubviews() {
+            super.layoutSubviews()
+
+            contentView.layer.shadowPath = CGPath(roundedRect: contentView.bounds, cornerWidth: 8, cornerHeight: 8, transform: nil)
+        }
+
         public func configure(emoji: Emoji) {
-            label.text = emoji.value
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor(red: 0x4C / 0xFF, green: 0xAD / 0xFF, blue: 0x50 / 0xFF, alpha: 170 / 255)
+            shadow.shadowOffset = .init(width: 0, height: 0)
+            shadow.shadowBlurRadius = 2.3
+
+            label.attributedText = NSAttributedString(string: emoji.value, attributes: [
+                .shadow: shadow,
+            ])
             title.text = emoji.title
         }
     }

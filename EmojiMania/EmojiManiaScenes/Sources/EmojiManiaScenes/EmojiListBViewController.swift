@@ -1,6 +1,6 @@
 import UIKit
 
-public final class EmojiListAViewController: BaseViewController<EmojiListAViewController.Cell> {
+public final class EmojiListBViewController: BaseViewController<EmojiListBViewController.Cell> {
     public final class Cell: UICollectionViewCell, EmojiListCell {
         private let label = UILabel()
         private let title = UILabel()
@@ -8,10 +8,13 @@ public final class EmojiListAViewController: BaseViewController<EmojiListAViewCo
         override init(frame: CGRect) {
             super.init(frame: frame)
 
-            contentView.layer.shadowColor = UIColor(red: 0x03 / 0xFF, green: 0xA9 / 0xFF, blue: 0xF4 / 0xFF, alpha: 1).cgColor
+            contentView.layer.shadowColor = UIColor(red: 0x68 / 0xFF, green: 0x9F / 0xFF, blue: 0x38 / 0xFF, alpha: 1).cgColor
             contentView.layer.shadowRadius = 3.4
             contentView.layer.shadowOpacity = 150 / 255
             contentView.layer.shadowOffset = .init(width: 0, height: 0)
+            
+            contentView.layer.rasterizationScale = UIScreen.main.scale
+            contentView.layer.shouldRasterize = true
 
             let background = UIView()
             background.backgroundColor = .white
