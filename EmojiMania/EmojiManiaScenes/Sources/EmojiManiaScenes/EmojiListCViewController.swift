@@ -34,8 +34,12 @@ public final class EmojiListCViewController: BaseViewController<EmojiListCViewCo
             ])
 
             label.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 36))
+            label.backgroundColor = background.backgroundColor
+            label.clipsToBounds = true
             title.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 14, weight: .bold))
             title.textColor = .black
+            title.backgroundColor = background.backgroundColor
+            title.clipsToBounds = true
         }
 
         required init?(coder: NSCoder) {
@@ -52,7 +56,7 @@ public final class EmojiListCViewController: BaseViewController<EmojiListCViewCo
             let shadow = NSShadow()
             shadow.shadowColor = UIColor(red: 0x4C / 0xFF, green: 0xAD / 0xFF, blue: 0x50 / 0xFF, alpha: 170 / 255)
             shadow.shadowOffset = .init(width: 0, height: 0)
-            shadow.shadowBlurRadius = 2.3
+            shadow.shadowBlurRadius = 4.6
 
             label.attributedText = NSAttributedString(string: emoji.value, attributes: [
                 .shadow: shadow,

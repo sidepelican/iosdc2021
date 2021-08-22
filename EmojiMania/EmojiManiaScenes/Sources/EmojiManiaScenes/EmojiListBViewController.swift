@@ -8,13 +8,20 @@ public final class EmojiListBViewController: BaseViewController<EmojiListBViewCo
         override init(frame: CGRect) {
             super.init(frame: frame)
 
-            contentView.layer.shadowColor = UIColor(red: 0x68 / 0xFF, green: 0x9F / 0xFF, blue: 0x38 / 0xFF, alpha: 1).cgColor
-            contentView.layer.shadowRadius = 3.4
-            contentView.layer.shadowOpacity = 150 / 255
-            contentView.layer.shadowOffset = .init(width: 0, height: 0)
-            
-            contentView.layer.rasterizationScale = UIScreen.main.scale
-            contentView.layer.shouldRasterize = true
+            let shadow = UIView()
+            shadow.layer.shadowColor = UIColor(red: 0x68 / 0xFF, green: 0x9F / 0xFF, blue: 0x38 / 0xFF, alpha: 1).cgColor
+            shadow.layer.shadowRadius = 3.4
+            shadow.layer.shadowOpacity = 150 / 255
+            shadow.layer.shadowOffset = .init(width: 0, height: 0)
+
+            shadow.backgroundColor = .white
+            shadow.layer.cornerRadius = 8
+            shadow.layer.rasterizationScale = UIScreen.main.scale
+            shadow.layer.shouldRasterize = true
+            shadow.clipsToBounds = false
+            contentView.addSubview(shadow)
+            shadow.translatesAutoresizingMaskIntoConstraints = false
+            shadow.pinEdgesToSuperView()
 
             let background = UIView()
             background.backgroundColor = .white
