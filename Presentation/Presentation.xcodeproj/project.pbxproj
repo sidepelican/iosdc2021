@@ -12,6 +12,8 @@
 		441E745F26CAA7E5002C3F5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441E745E26CAA7E5002C3F5D /* Assets.xcassets */; };
 		441E746226CAA7E5002C3F5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441E746126CAA7E5002C3F5D /* Preview Assets.xcassets */; };
 		441E746D26CAAB5C002C3F5D /* PresentationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 441E746C26CAAB5C002C3F5D /* PresentationKit */; };
+		44C8159D26D55899002465A3 /* EmojiManiaScenes in Frameworks */ = {isa = PBXBuildFile; productRef = 44C8159C26D55899002465A3 /* EmojiManiaScenes */; };
+		44C815A026D558F5002465A3 /* UIViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C8159F26D558F5002465A3 /* UIViewControllerWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		441E746326CAA7E5002C3F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441E746926CAA7EC002C3F5D /* Presentation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Presentation.entitlements; sourceTree = "<group>"; };
 		441E746A26CAAA93002C3F5D /* PresentationKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PresentationKit; sourceTree = "<group>"; };
+		44C8159B26D55650002465A3 /* EmojiManiaScenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EmojiManiaScenes; path = ../EmojiMania/EmojiManiaScenes; sourceTree = "<group>"; };
+		44C8159F26D558F5002465A3 /* UIViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				441E746D26CAAB5C002C3F5D /* PresentationKit in Frameworks */,
+				44C8159D26D55899002465A3 /* EmojiManiaScenes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,7 @@
 		441E744E26CAA7E4002C3F5D = {
 			isa = PBXGroup;
 			children = (
+				44C8159B26D55650002465A3 /* EmojiManiaScenes */,
 				441E746A26CAAA93002C3F5D /* PresentationKit */,
 				441E745926CAA7E4002C3F5D /* Presentation */,
 				441E745826CAA7E4002C3F5D /* Products */,
@@ -58,6 +64,7 @@
 		441E745926CAA7E4002C3F5D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				44C8159E26D558EB002465A3 /* Util */,
 				441E746926CAA7EC002C3F5D /* Presentation.entitlements */,
 				441E745A26CAA7E4002C3F5D /* App.swift */,
 				441E745C26CAA7E4002C3F5D /* ContentView.swift */,
@@ -83,6 +90,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		44C8159E26D558EB002465A3 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				44C8159F26D558F5002465A3 /* UIViewControllerWrapper.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,6 +116,7 @@
 			name = Presentation;
 			packageProductDependencies = (
 				441E746C26CAAB5C002C3F5D /* PresentationKit */,
+				44C8159C26D55899002465A3 /* EmojiManiaScenes */,
 			);
 			productName = Presentation;
 			productReference = 441E745726CAA7E4002C3F5D /* Presentation.app */;
@@ -157,6 +173,7 @@
 			files = (
 				441E745D26CAA7E4002C3F5D /* ContentView.swift in Sources */,
 				441E745B26CAA7E4002C3F5D /* App.swift in Sources */,
+				44C815A026D558F5002465A3 /* UIViewControllerWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +371,10 @@
 		441E746C26CAAB5C002C3F5D /* PresentationKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PresentationKit;
+		};
+		44C8159C26D55899002465A3 /* EmojiManiaScenes */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EmojiManiaScenes;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

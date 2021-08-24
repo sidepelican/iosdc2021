@@ -34,7 +34,9 @@ struct PresentationApp: App {
                     userActivity.targetContentIdentifier = cunnningWindowIdentifier
 
                     let options = UIScene.ActivationRequestOptions()
+                    #if os(macOS)
                     options.collectionJoinBehavior = .disallowed
+                    #endif
                     UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: options)
                 }
                 .keyboardShortcut("d", modifiers: .command)

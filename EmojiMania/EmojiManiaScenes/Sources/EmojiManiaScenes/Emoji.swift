@@ -145,5 +145,61 @@ public struct Emoji: Hashable {
             value: "🚩",
             title: "Flag"
         ),
+        Emoji(
+            value: "🦷",
+            title: "Tooth"
+        ),
+        Emoji(
+            value: "👁",
+            title: "Eye"
+        ),
+        Emoji(
+            value: "🐼",
+            title: "Panda"
+        ),
+        Emoji(
+            value: "🖕",
+            title: "Nakayubi"
+        ),
+        Emoji(
+            value: "💿",
+            title: "CD"
+        ),
+        Emoji(
+            value: "🛏",
+            title: "Bed"
+        ),
+        Emoji(
+            value: "🇯🇵",
+            title: "Japan"
+        ),
+        Emoji(
+            value: "🎶",
+            title: "♪♪♪"
+        ),
+        Emoji(
+            value: "👺",
+            title: "Long nose"
+        ),
+        Emoji(
+            value: "🚶",
+            title: "Walk"
+        ),
+        Emoji(
+            value: "🏅",
+            title: "Medal"
+        ),
+        Emoji(
+            value: "📂",
+            title: "Folder"
+        ),
+        Emoji(
+            value: "🟦",
+            title: "Blue"
+        ),
+        Emoji(
+            value: "🎁",
+            title: "Present"
+        ),
     ]
 }
