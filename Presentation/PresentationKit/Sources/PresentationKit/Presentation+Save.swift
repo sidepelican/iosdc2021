@@ -24,12 +24,12 @@ extension Presentation {
                 print("printing page \(presentationContext.currentPageIndex+1) step \(presentationContext.currentStep)...")
                 vc.view.drawHierarchy(in: context.pdfContextBounds, afterScreenUpdates: true)
 
-                presentationContext.nextAnimation = nil
-                presentationContext.handleStep(.forward)
-
                 if presentationContext.isEnd {
                     break
                 }
+
+                presentationContext.nextAnimation = nil
+                presentationContext.handleStep(.forward)
             }
         }
 
