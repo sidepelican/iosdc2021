@@ -6,6 +6,7 @@ private let cunnningWindowIdentifier = "com.gmail.side.junktown.Presentation.Cun
 @main
 struct PresentationApp: App {
     let presentationContext = PresentationContext(pages: [
+        TitlePage(),
         HelloPage(),
         HelloWorldPage(),
     ])
@@ -16,6 +17,7 @@ struct PresentationApp: App {
                 Presentation(context: presentationContext)
                     .resumeFromLastPage()
             }
+            .preferredColorScheme(.light)
         }
         .commands {
             CommandGroup(after: .printItem) {

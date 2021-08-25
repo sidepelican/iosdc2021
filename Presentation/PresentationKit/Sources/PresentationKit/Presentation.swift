@@ -94,7 +94,7 @@ struct _Presentation: View {
 
     var body: some View {
         ZStack {
-            context.pages[context.currentPageIndex].anyBody
+            context.pages[context.currentPageIndex].anyView
             if showPointer {
                 Image(systemName: "circle.fill")
                     .frame(width: 60, height: 60)
