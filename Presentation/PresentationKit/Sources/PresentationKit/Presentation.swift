@@ -40,7 +40,7 @@ public final class PresentationContext: ObservableObject {
     let pages: [AnyPage]
     @Published public var currentPageIndex = 0
     @Published public var currentStep = 0
-    public var nextAnimation: Animation? = .default
+    public var nextAnimation: Animation? = .easeInOut(duration: 0.2)
     var isEnd: Bool {
         currentPageIndex == pages.count - 1
             && pages[currentPageIndex].stepCount - 1 == currentStep

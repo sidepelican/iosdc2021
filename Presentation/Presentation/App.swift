@@ -6,9 +6,34 @@ private let cunnningWindowIdentifier = "com.gmail.side.junktown.Presentation.Cun
 @main
 struct PresentationApp: App {
     let presentationContext = PresentationContext(pages: [
-        TitlePage(),
-        HelloPage(),
-        HelloWorldPage(),
+        Page001Page(),
+        Page101Page(),
+        Page102Page(),
+        Page103Page(),
+        Page104Page(),
+        Page201Page(),
+        Page202Page(),
+        Page203Page(),
+        Page204Page(),
+        Page205Page(),
+        Page206Page(),
+        Page301Page(),
+        Page302Page(),
+        Page303Page(),
+        Page401Page(),
+        Page402Page(),
+        Page403Page(),
+        Page404Page(),
+        Page405Page(),
+        Page406Page(),
+        Page501Page(),
+        Page502Page(),
+        Page503Page(),
+        Page504Page(),
+        Page505Page(),
+        Page506Page(),
+        Page507Page(),
+        Page601Page(),
     ])
 
     var body: some Scene {
