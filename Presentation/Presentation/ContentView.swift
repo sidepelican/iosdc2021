@@ -7,7 +7,7 @@ struct HelloPage: View, Page {
         Text("Hello")
     }
 
-    var cunningText: String {
+    func cunningText(step: Int) -> String {
         "Hello"
     }
 }
@@ -38,7 +38,7 @@ struct HelloWorldPage: View, Page {
         }
     }
 
-    var cunningText: String {
+    func cunningText(step: Int) -> String {
         """
         Hello World
         -----------

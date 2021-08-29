@@ -4,20 +4,18 @@ import SwiftUI
 
 struct Page102Page: Page {
     @EnvironmentObject var context: PresentationContext
-    var stepCount: Int { 3 }
+    var stepCount: Int { 2 }
 
     var body: some View {
         TopTitle(title: "サンプルアプリケーションの紹介") {
             HSplit(ratio: 0.6) {
                 Text("EmojiMania")
                     .padding(.vertical, 16)
-                if context.currentStep >= 1 {
-                    Itemize {
-                        "絵文字を一覧表示するアプリ"
-                    }
-                    .padding(.bottom, 32)
+                Itemize {
+                    "絵文字を一覧表示するアプリ"
                 }
-                if context.currentStep >= 2 {
+                .padding(.bottom, 32)
+                if context.currentStep >= 1 {
                     Text("課題")
                         .padding(.vertical, 16)
                     Itemize {
@@ -31,6 +29,19 @@ struct Page102Page: Page {
                 }
             }
         }
+    }
+
+    func cunningText(step: Int) -> String {
+        """
+        サンプルアプリはこのような感じで、絵文字の一覧表示をするアプリになっています。
+        （手でスクロールする）
+        各セルに角丸だとかシャドウだとかがふんだんに使われていて、リッチなデザインとなっています。
+
+
+        このアプリ、やっていることはとってもシンプルに見えるんですけど、実際に触ってみるとめっちゃスクロールがザラザラしてしまいます。
+        これは大変です、これではユーザさんが気持ちよく操作できません。
+        いち早く改善する必要があります。
+        """
     }
 }
 

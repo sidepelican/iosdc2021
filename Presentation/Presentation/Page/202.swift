@@ -16,6 +16,18 @@ struct Page202Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        描画の流れを観察するにはどうすればいいでしょうか。
+        Xcodeには、Metal Debuggerというものが用意されていて、アプリがMetalをどのように使用しているかを調べることができます。
+        Metalとは低レイヤのグラフィックAPIで、画面描画よく用いられています。
+        このMetal Debuggerは、どういうわけかUIKitの挙動を観察することはできないんですよね。
+        UIKitも裏でMetalを使っていると思うんですけど確認できないのでどうしようない、ということになっています。
+
+        そこで今回は、Fluteを使ってこのMetal Debuggerを動かしていきたいと思います。
+        """
+    }
 }
 
 struct Page202Page_Previews: PreviewProvider {

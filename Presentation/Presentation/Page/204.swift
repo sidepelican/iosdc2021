@@ -9,6 +9,16 @@ struct Page204Page: Page {
                 .scaledToFit()
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        Metal Debuggerを有効にするには、RunスキームのOptionsってとこにある、
+        GPU Frame Caputureという項目でMetalを選択することで使用可能になります。
+
+        ここデフォルトだとAutomaticみたいなのが選択されてるんですけど、
+        Automaticだと何故かうまくいかないので、ちゃんと明示的にMetalを選択します。
+        """
+    }
 }
 
 struct Page204Page_Previews: PreviewProvider {

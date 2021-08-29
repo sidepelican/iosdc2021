@@ -16,6 +16,18 @@ struct Page103Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        （縦にスクロールできる）
+        こちらがサンプルアプリのセルの実装になります。
+        contentView.layerに影を指定して、
+        角丸の背景Viewを置いて
+        その上にStackViewでラベルを並べているという、とてもごくありふれた実装になっています。
+        ここで絵文字のラベルにも影がついてたりします。
+        一見問題はなさそうですね。でも、実際の動きはというと
+        """
+    }
 }
 
 struct Page103Page_Previews: PreviewProvider {

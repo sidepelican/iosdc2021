@@ -9,6 +9,11 @@ struct Page601Page: Page {
                 "影の利用がオフスクリーンレンダリングをもたらす流れを確認した"
                 "Animation Hitchesを確認しながら速度改善した"
             }
+
+            Spacer()
+            Text("今回のサンプルアプリ実装")
+            Text("https://github.com/sidepelican/iosdc2021/tree/main/EmojiMania")
+                .font(.custom("courier", size: 30))
         }
     }
 }

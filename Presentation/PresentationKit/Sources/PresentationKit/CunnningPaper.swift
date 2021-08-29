@@ -9,7 +9,7 @@ public struct CunnningPaper: View {
 
     public var body: some View {
         ZStack {
-            Text(context.pages[context.currentPageIndex].cunningText)
+            Text(context.pages[context.currentPageIndex].cunningText(step: context.currentStep))
                 .font(.title)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .padding(16)

@@ -23,6 +23,20 @@ struct Page203Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        Flutterについてですが、もうすでに十分広まっていると思うので説明は省略させて頂きます。
+
+        Flutterは裏でSkiaというマルチプラットフォーム対応のグラフィックAPIを用いています。
+        Skiaはマルチプラットフォームに対応しているので多くのバックエンドを取り扱えるようになっていて、
+        新しめのiOS環境ではMetalが使用されています。
+        つまりMetal Debuggerで観察できるということになります。
+
+        こんな感じで、見た目がほぼ同じアプリをFlutterで作っておきました。
+        では、実際のこのFlutterアプリを観察していきましょう。
+        """
+    }
 }
 
 struct Page203Page_Previews: PreviewProvider {

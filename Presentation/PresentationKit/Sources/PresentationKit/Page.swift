@@ -3,12 +3,12 @@ import SwiftUI
 public protocol AnyPage {
     var stepCount: Int { get }
     var anyView: AnyView { get }
-    var cunningText: String { get }
+    func cunningText(step: Int) -> String
 }
 
 public protocol Page: View, AnyPage {
     var stepCount: Int { get }
-    var cunningText: String { get }
+    func cunningText(step: Int) -> String
 }
 
 extension Page {
@@ -16,5 +16,5 @@ extension Page {
     public var anyView: AnyView {
         AnyView(self)
     }
-    public var cunningText: String { "" }
+    public func cunningText(step: Int) -> String  { "" }
 }
