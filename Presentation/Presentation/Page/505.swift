@@ -34,6 +34,15 @@ struct Page505Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        計測した結果がこちらになります
+
+        おわかりでしょうか。先程は3枚あったSurfaceが2枚しかありません！
+        すべてのフレームにおいて、入力から次のフレームまでに描画が完了していることがわかります
+        """
+    }
 }
 
 struct Page505Page_Previews: PreviewProvider {

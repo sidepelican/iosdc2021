@@ -16,6 +16,16 @@ struct Page403Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        今回のアプリはこのような結果となりました。
+        ひどいですね。
+        （マウスぐるぐるしながら）このへんがカクつきが起こったことを表しています。
+        下のBuilt in Displayってのが各フレームが画面にどれくらい表示されてたかを表しています。
+        太いやつは、それだけ長い時間画面に存在しつづけてたことを意味していて、つまり処理落ちしているということになります。
+        """
+    }
 }
 
 struct Page403Page_Previews: PreviewProvider {

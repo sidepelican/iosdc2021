@@ -15,6 +15,15 @@ struct Page507Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        実機の動画がこちらです。
+        改善前と比べてどうでしょうか？さすがにこれは圧倒的な差が伝わってると思うんですけど
+        これ実機はiPhone12miniで最新のスペックの端末なんですけど、それでも左は全然ザラザラしちゃうんですよね。
+        端末スペックがどんなに上がっても、重い描画は重いってことがわかると思います。
+        """
+    }
 }
 
 struct Page507Page_Previews: PreviewProvider {

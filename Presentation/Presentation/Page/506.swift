@@ -30,6 +30,13 @@ struct Page506Page: Page {
             }
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        これが、これまでの改善結果の比較になります。
+        スライド上だとよくわからないので次にいきます。
+        """
+    }
 }
 
 struct Page506Page_Previews: PreviewProvider {

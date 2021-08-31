@@ -16,6 +16,19 @@ struct Page601Page: Page {
                 .font(.custom("courier", size: 30))
         }
     }
+
+    func cunningText(step: Int) -> String {
+        """
+        僕の発表は以上になります。
+        まとめですが、本日は
+        Flutterを用いてUI描画の流れを確認しました。
+        影の利用がオフスクリーンレンダリングをもたらすってことを理解できたかと思います。
+        Animation Hitchesを確認しながら速度改善することができました。
+
+        今回のスクロールがザラツくサンプルアプリはここのリポジトリにあるので、興味のある方は触ってみてください。
+        以上で発表をおわります。
+        """
+    }
 }
 
 struct Page601Page_Previews: PreviewProvider {
