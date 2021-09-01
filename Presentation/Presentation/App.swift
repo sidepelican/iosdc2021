@@ -41,7 +41,9 @@ struct PresentationApp: App {
             VirtualScreen(resolution: CGSize(width: 1280, height: 720)) {
                 Presentation(context: presentationContext)
                     .resumeFromLastPage()
+                    .background(Color.white)
             }
+            .background(Color.black)
             .preferredColorScheme(.light)
         }
         .commands {
