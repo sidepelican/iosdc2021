@@ -12,7 +12,6 @@ struct Page001Page: Page {
     func cunningText(step: Int) -> String {
         """
         こんにちは、元ゲーム開発者が贈る描画パフォーマンス改善ということで発表させて頂きます。
-        アイスマンといいます。宜しくおねがいします。
         """
     }
 }
