@@ -19,7 +19,6 @@ struct Page601Page: Page {
 
     func cunningText(step: Int) -> String {
         """
-        僕の発表は以上になります。
         まとめですが、本日は
         Flutterを用いてUI描画の流れを確認しました。
         影の利用がオフスクリーンレンダリングをもたらすってことを理解できたかと思います。
