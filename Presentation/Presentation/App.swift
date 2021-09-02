@@ -35,6 +35,8 @@ struct PresentationApp: App {
         Page505Page(),
         Page506Page(),
         Page507Page(),
+        Page508Page(),
+        Page509Page(),
         Page601Page(),
     ])
 
