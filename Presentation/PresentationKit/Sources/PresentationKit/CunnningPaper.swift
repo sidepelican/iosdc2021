@@ -9,11 +9,29 @@ public struct CunnningPaper: View {
 
     public var body: some View {
         ZStack {
-            Text(context.pages[context.currentPageIndex].cunningText(step: context.currentStep))
-                .font(.title)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(16)
-                .animation(nil)
+            ScrollView {
+                Text(context.pages[context.currentPageIndex].cunningText(step: context.currentStep))
+                    .font(.title)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(16)
+                    .animation(nil)
+            }
+
+            HStack {
+                Image(systemName: "chevron.backward.square")
+                    .font(.system(size: 120, weight: .thin))
+                    .onTapGesture {
+                        context.handleStep(.back)
+                    }
+                Spacer()
+                Image(systemName: "chevron.forward.square")
+                    .font(.system(size: 120, weight: .thin))
+                    .onTapGesture {
+                        context.handleStep(.forward)
+                    }
+            }
+            .padding(30)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
 
             VStack(spacing: 8) {
                 HStack {
